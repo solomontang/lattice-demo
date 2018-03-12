@@ -17,10 +17,10 @@ const renderBodyRow = ({ entityType }) => {
     key: id,
     cells: [
       type
-        ? { key: 'type', content: type.namespace + '.' + type.title }
+        ? { key: 'type', content: type.namespace + '.' + type.title, className: 'truncated' }
         : 'No Type',
       title 
-      ? { key: 'title', content: title }
+      ? { key: 'title', content: title, className: 'truncated' }
       : 'No Title',
       description 
       ? { key: 'description', content: description }
@@ -37,6 +37,8 @@ const TableContainer = (props) => (
         headerRow={headerRow}
         renderBodyRow={renderBodyRow}
         tableData={props.associationTypes}
+        selectable
+        unstackable
       />
     </Segment>
   </Segment.Group>

@@ -27,3 +27,9 @@ table.scrollable tr {
   display: table;
   table-layout: fixed;
 }
+
+table.scrollable td.truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
