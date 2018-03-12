@@ -7,12 +7,11 @@ import { Segment, Header, Table } from 'semantic-ui-react';
 
 const headerRow = [
   'Type',
-  'Title',
-  'Description'
+  'Title'
 ];
 
 const renderBodyRow = ({ entityType }) => {
-  const { id, type, title, description } = entityType; 
+  const { id, type, title } = entityType; 
   return {
     key: id,
     cells: [
@@ -21,10 +20,7 @@ const renderBodyRow = ({ entityType }) => {
         : 'No Type',
       title 
       ? { key: 'title', content: title, className: 'truncated' }
-      : 'No Title',
-      description 
-      ? { key: 'description', content: description }
-      : 'No Description'
+      : 'No Title'
     ]
   }
 }
@@ -36,9 +32,10 @@ const TableContainer = (props) => (
       <Table className='scrollable'
         headerRow={headerRow}
         renderBodyRow={renderBodyRow}
-        tableData={props.associationTypes}
+        tableData={props.associationTypes.associationTypes}
         selectable
         unstackable
+        sortable
       />
     </Segment>
   </Segment.Group>

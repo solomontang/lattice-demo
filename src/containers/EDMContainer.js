@@ -6,6 +6,7 @@ import { fetchAllTypes } from '../actions/edm';
 
 import { Grid, Segment } from 'semantic-ui-react';
 import TableContainer from './TableContainer';
+import TreeContainer from './TreeContainer';
 
 class EDMContainer extends Component {
 
@@ -24,7 +25,7 @@ class EDMContainer extends Component {
             <TableContainer />
           </Grid.Column>
           <Grid.Column width={8}>
-            else
+            <TreeContainer/>
           </Grid.Column>
         </Grid.Row>
       </Grid>
