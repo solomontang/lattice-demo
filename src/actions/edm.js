@@ -1,8 +1,13 @@
 import axios from 'axios';
-import { SET_PROPERTY_TYPES, SET_ENTITY_TYPES, SET_ASSOCIATION_TYPES, FETCH_ALL_DATA, FETCH_ALL_DATA_SUCCESS } from './actionTypes';
+import { SET_PROPERTY_TYPES, SET_ENTITY_TYPES, SET_ASSOCIATION_TYPES, FETCH_ALL_DATA, FETCH_ALL_DATA_SUCCESS, SELECT_MODEL } from './actionTypes';
 
 const fetch = axios.create({
   baseURL: 'https://api.openlattice.com/datastore/edm/'
+})
+
+export const selectModel = (id) => ({
+  type: SELECT_MODEL,
+  id
 })
 
 export const setPropertyTypes = (data) => ({
