@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
+
 import MenuBar from './components/MenuBar';
-import CanvasContainer from './containers/CanvasContainer';
+import EDMContainer from './containers/EDMContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <MenuBar />
-        <CanvasContainer />
+        <EDMContainer />
       </div>
     );
   }
