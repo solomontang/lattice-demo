@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchAllTypes } from '../actions/edm';
 
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import TableContainer from './TableContainer';
 import TreeContainer from './TreeContainer';
 

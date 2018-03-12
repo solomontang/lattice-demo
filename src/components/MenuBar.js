@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Menu, Image, Header } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import { NavLink, withRouter } from 'react-router-dom'
 import OpenLatticeLogo from "../assets/images/logo_and_name.png";
 
