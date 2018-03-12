@@ -1,0 +1,29 @@
+table.scrollable {
+  display: table;
+  width: 100%;
+}
+
+table.scrollable thead,
+table.scrollable tbody {
+  width: 100%;
+}
+
+table.scrollable thead {
+  overflow-y: scroll;
+  display: table;
+  table-layout: fixed;
+  width: calc(100%); /* assuming scrollbar width as 16px */
+}
+
+table.scrollable tbody {
+  overflow: auto;
+  height: calc(100vh - 260px); /* based on surrounding elements. not true responsive */
+  display: block;
+}
+
+table.scrollable tr {
+  width: 100%;
+  text-align: left;
+  display: table;
+  table-layout: fixed;
+}
