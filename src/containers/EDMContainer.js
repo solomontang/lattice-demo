@@ -16,16 +16,17 @@ class EDMContainer extends Component {
   }
 
   render() {
+    const { modelType } = this.props;
     return (
       <Grid padded style={{
         height: 'calc(100vh - 82px)'
       }}>
         <Grid.Row stretched>
           <Grid.Column width={8}>
-            <TableContainer />
+            <TableContainer modelType={modelType}/>
           </Grid.Column>
           <Grid.Column width={8}>
-            <TreeContainer/>
+            <TreeContainer modelType={modelType}/>
           </Grid.Column>
         </Grid.Row>
       </Grid>

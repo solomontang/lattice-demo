@@ -8,13 +8,20 @@ import { selectModel } from '../actions/edm';
 
 class TableContainer extends Component {
 
+  componentDidMount() {
+    const { title } = this.props.modelType;
+    this.setState({
+      title
+    })
+  }
+
   headerRow = [
     'Type',
     'Title'
   ];
 
-  renderBodyRow = ({ entityType }) => {
-    const { id, type, title } = entityType; 
+  renderBodyRow = ( model ) => {
+    const { id, type, title } = model.entityType || model;
     const { currentModel } = this.props;
     const { selectModel } = this.props.actions;
     return {
@@ -35,15 +42,19 @@ class TableContainer extends Component {
 
   render() {
     const { renderBodyRow, headerRow } = this;
-    const { associationTypes } = this.props;
+    const { associationTypes, entityTypes, isFetching, modelType } = this.props;
+    const data = modelType === 'EntityTypes'
+      ? entityTypes.entityTypes
+      : associationTypes.associationTypes;
+
     return (
-      <Segment.Group>
-        <Segment as={Header} size='large' padded>Association Types</Segment>
-        <Segment>
+      <Segment.Group >
+        <Segment as={Header} size='large' padded color='violet'>{modelType}</Segment>
+        <Segment loading={isFetching}>
           <Table className='scrollable'
             headerRow={headerRow}
             renderBodyRow={renderBodyRow}
-            tableData={associationTypes.associationTypes}
+            tableData={data}
             selectable
             unstackable
             sortable
@@ -54,9 +65,11 @@ class TableContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ associationTypes, currentModel }) => ({
+const mapStateToProps = ({ associationTypes, entityTypes, currentModel, isFetching }) => ({
   associationTypes,
-  currentModel
+  entityTypes,
+  currentModel,
+  isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
