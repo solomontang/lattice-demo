@@ -9,3 +9,5 @@ export const SELECT_PROPERTY_TYPE = 'SELECT_PROPERTY_TYPE';
 export const SELECT_ENTITY_TYPE = 'SELECT_ENTITY_TYPE';
 export const SELECT_ASSOCIATION_TYPE = 'SELECT_ASSOCIATION_TYPE';
 export const SELECT_MODEL = 'SELECT_MODEL';
+
+export const LOCATION_CHANGE = '@@router/LOCATION_CHANGE'; //react-router-redux;
