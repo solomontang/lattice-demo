@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+
 import associationTypes from './associationTypes';
 import entityTypes from './entityTypes';
 import propertyTypes from './propertyTypes';

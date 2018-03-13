@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import cuid from 'cuid';
+
 import Tree from 'react-tree-graph';
 import { Segment } from 'semantic-ui-react';
 import '../css/tree.css';
-import cuid from 'cuid';
 
 class TreeContainer extends Component {
   constructor(props) {

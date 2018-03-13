@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+
 import MenuBar from './components/MenuBar';
 import EDMContainer from './containers/EDMContainer';
 

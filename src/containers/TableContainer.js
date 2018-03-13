@@ -2,26 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import '../css/scrollable.css';
 import { Segment, Table } from 'semantic-ui-react';
+import '../css/scrollable.css';
+
 import { selectModel } from '../actions/edm';
+
 
 class TableContainer extends Component {
 
-  componentDidMount() {
-    const { title } = this.props.modelType;
-    this.setState({
-      title
-    })
-  }
-
   headerRow = [
     'Type',
-    'Title'
+    'Title',
+    'Description'
   ];
 
   renderBodyRow = ( model ) => {
-    const { id, type, title } = model.entityType || model;
+    const { id, type, title, description } = model.entityType || model;
     const { currentModel } = this.props;
     const { selectModel } = this.props.actions;
     return {
@@ -31,8 +27,11 @@ class TableContainer extends Component {
           ? { key: 'type', content: type.namespace + '.' + type.name, className: 'truncated' }
           : 'No Type',
         title 
-        ? { key: 'title', content: title, className: 'truncated' }
-        : 'No Title'
+          ? { key: 'title', content: title, className: 'truncated' }
+          : 'No Title',
+        description
+          ? { key: 'description', content: description}
+          : '-'
       ],
       active: id === currentModel,
       onClick: () => selectModel(id) //anonymous function causes all rows to re-render. consider avoiding semantic-ui shorthand to optimize
