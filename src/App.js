@@ -4,11 +4,11 @@ import MenuBar from './components/MenuBar';
 import EDMContainer from './containers/EDMContainer';
 
 const entityContainer = () => (
-  <EDMContainer modelType='EntityTypes' />
+  <EDMContainer modelType='entityTypes' />
 )
 
 const associationContainer = () => (
-  <EDMContainer modelType='AssociationTypes' />
+  <EDMContainer modelType='associationTypes' />
 )
 
 const App = () => (

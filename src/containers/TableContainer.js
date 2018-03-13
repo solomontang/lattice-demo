@@ -43,7 +43,7 @@ class TableContainer extends Component {
   render() {
     const { renderBodyRow, headerRow } = this;
     const { associationTypes, entityTypes, isFetching, modelType } = this.props;
-    const data = modelType === 'EntityTypes'
+    const data = modelType === 'entityTypes'
       ? entityTypes.entityTypes
       : associationTypes.associationTypes;
 

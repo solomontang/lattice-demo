@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Tree from 'react-tree-graph';
 import { Segment } from 'semantic-ui-react';
 import '../css/tree.css';
+import cuid from 'cuid';
 
 class TreeContainer extends Component {
   constructor(props) {
@@ -22,23 +23,60 @@ class TreeContainer extends Component {
     })
   }
 
+  //maybe move these getters to redux actions for bigger app?
+  getAssociationTypeModelById = (hash) => {
+    const { associationTypes } = this.props;
+    return associationTypes.associationTypes[associationTypes.byId[hash]];
+  }
+
+  getEntityTypeModelById = (hash) => {
+    const { entityTypes } = this.props;
+    return entityTypes.entityTypes[entityTypes.byId[hash]];
+  }
+
+  getPropertyTypeModelById = (hash) => {
+    const { propertyTypes } = this.props;
+    return propertyTypes.propertyTypes[propertyTypes.byId[hash]];
+  }
+
   createTreeData = () => {
-    const { associationTypes, propertyTypes, entityTypes, currentModel } = this.props;
+    const { currentModel, modelType } = this.props;
+    const { getAssociationTypeModelById, getEntityTypeModelById } = this;
+    let rootModel = null
+    let rootEntity = null
+    let modelPath = []
+    let modelSrc = null
+    let modelDst = null;
+
+    if (modelType === 'entityTypes') {
+      rootModel = getEntityTypeModelById(currentModel);
+      rootEntity = rootModel;
+      modelPath = ['Key', 'Properties'];
+      modelSrc = rootModel.key;
+      modelDst = rootModel.properties;
+    } else {
+      rootModel = getAssociationTypeModelById(currentModel);
+      rootEntity = rootModel.entityType;
+      modelPath = ['Sources', 'Destinations'];
+      modelSrc = rootModel.src;
+      modelDst = rootModel.dst;
+    }
+
     const treeData = {};
     
     if (currentModel) {
-      const association = associationTypes.associationTypes[associationTypes.byId[currentModel]];
-      treeData.name = association.entityType.type.namespace + '.' + association.entityType.type.name;
+      treeData.name = rootEntity.type.namespace + '.' + rootEntity.type.name;
+      treeData.reactKey = cuid();
       treeData.children = [
         {
-          name: "Sources",
-          //key: `source-${association.entityType.id}`
-          children: this.getChildrenNames(association.src)
+          name: modelPath[0],
+          reactKey: cuid(),
+          children: this.getChildrenNames(modelSrc)
         },
         {
-          name: "Destinations",
-          //key: `destination-${association.entityType.id}`
-          children: this.getChildrenNames(association.dst)
+          name: modelPath[1],
+          reactKey: cuid(),
+          children: this.getChildrenNames(modelDst)
         }
       ]
     }
@@ -46,11 +84,18 @@ class TreeContainer extends Component {
   }
 
   getChildrenNames = (hashes) => {
-    const { entityTypes } = this.props;
+    const { modelType } = this.props;
+    const { getPropertyTypeModelById, getEntityTypeModelById } = this;
+
+    const getModelById = modelType === 'entityTypes'
+      ? getPropertyTypeModelById
+      : getEntityTypeModelById;
+
     const childrenNames = hashes.map( hash => {
-      const entity = entityTypes.entityTypes[entityTypes.byId[hash]];
+      const child = getModelById(hash);
       return {
-        name: entity.type.namespace + '.' + entity.type.name,
+        name: child.type.namespace + '.' + child.type.name,
+        reactKey: cuid()
       }
     })
     return childrenNames;
@@ -67,9 +112,9 @@ class TreeContainer extends Component {
             data={this.createTreeData()}
             height={this.state.height}
             width={this.state.width}
-            // margins={{ bottom : 0, left : 0, right : 150, top : 0 }}
-            //animated      // React warning about unique keys during animation
-            //keyProp="key" // even when keyProp is set to entity id hash inside treeData
+            keyProp='reactKey'
+            steps={60} 
+            animated
             />
             : <div className="emptyTree">Select a model</div>
           }
