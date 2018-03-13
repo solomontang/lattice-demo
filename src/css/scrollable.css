@@ -16,7 +16,8 @@ table.scrollable thead {
 }
 
 table.scrollable tbody {
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: calc(100vh - 260px); /* based on surrounding elements. not true responsive */
   display: block;
 }
@@ -28,7 +29,7 @@ table.scrollable tr {
   table-layout: fixed;
 }
 
-table.scrollable td.truncated {
+.truncated {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

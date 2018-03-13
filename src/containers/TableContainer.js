@@ -11,9 +11,9 @@ import { selectModel } from '../actions/edm';
 class TableContainer extends Component {
 
   headerRow = [
-    'Type',
-    'Title',
-    'Description'
+    { key: 'header-type', content: 'Type', className: 'truncated'},
+    { key: 'header-title', content: 'Title', className: 'truncated'},
+    { key: 'header-description', content: 'Description', className: 'truncated'},
   ];
 
   renderBodyRow = ( model ) => {
@@ -48,7 +48,7 @@ class TableContainer extends Component {
 
     return (
       <Segment.Group >
-        <Segment className='tableHeader' size='large' color='violet'>{modelType}</Segment>
+        <Segment className='truncated tableHeader' size='large' color='violet'>{modelType}</Segment>
         <Segment loading={isFetching}>
           <Table className='scrollable'
             headerRow={headerRow}
