@@ -15,4 +15,4 @@ const MenuBar = () => (
   </Menu>
 )
 
-export default withRouter(MenuBar);
+export default MenuBar;
