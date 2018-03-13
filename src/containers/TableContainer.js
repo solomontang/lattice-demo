@@ -49,7 +49,7 @@ class TableContainer extends Component {
 
     return (
       <Segment.Group >
-        <Segment as={Header} size='large' padded color='violet'>{modelType}</Segment>
+        <Segment className='tableHeader' size='large' color='violet'>{modelType}</Segment>
         <Segment loading={isFetching}>
           <Table className='scrollable'
             headerRow={headerRow}

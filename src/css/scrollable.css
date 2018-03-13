@@ -33,3 +33,8 @@ table.scrollable td.truncated {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.tableHeader {
+  font-size: 1.5em!important;
+  text-transform: capitalize!important;
+}

@@ -113,8 +113,8 @@ class TreeContainer extends Component {
             height={this.state.height}
             width={this.state.width}
             keyProp='reactKey'
-            steps={60} 
             animated
+            // steps={30} //animation steps
             />
             : <div className="emptyTree">Select a model</div>
           }
