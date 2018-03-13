@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import '../css/scrollable.css';
-import { Segment, Header, Table } from 'semantic-ui-react';
+import { Segment, Table } from 'semantic-ui-react';
 import { selectModel } from '../actions/edm';
 
 class TableContainer extends Component {
